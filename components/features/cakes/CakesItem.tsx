@@ -6,7 +6,11 @@ import {
   AccordionSummary,
   Alert,
   AlertProps,
+  Paper,
   Snackbar,
+  Box,
+  Typography,
+  Modal,
 } from '@mui/material';
 import React, { FC, forwardRef, useState } from 'react';
 import { useAppDispatch } from '../../app/hooks';
@@ -38,6 +42,7 @@ export const CakesItem: FC<CakesItemProps> = ({
   const [expanded, setExpanded] = useState<string | false>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [openTwo, setOpenTwo] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
 
   const handleClose = (
     event?: React.SyntheticEvent | Event,
@@ -57,6 +62,14 @@ export const CakesItem: FC<CakesItemProps> = ({
       return reason;
     }
     setOpenTwo(!openTwo);
+  };
+
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setOpenModal(false);
   };
 
   const handleChange = (isExpanded: boolean, panel: string) => {
@@ -104,77 +117,110 @@ export const CakesItem: FC<CakesItemProps> = ({
     }
   };
 
-  const heights = [
-    150, 30, 90, 110, 80, 95, 12, 200, 20, 30, 40, 50, 60, 70, 80, 90,
-  ];
-
   return (
     // <div className='grid grid-cols-3 gap-2'>
-    <Accordion
-      sx={{ minHeight: heights }}
-      expanded={expanded === `panel-${cakes.id}`}
-      onChange={(_event, isExpanded) =>
-        handleChange(isExpanded, `panel-${cakes.id}`)
-      }
+    <Paper
+      key={cakes.id}
+      className='text-center flex justify-center items-center'
     >
-      <AccordionSummary
-        expandIcon={<ExpandMore />}
-        id={`panel-${cakes.id}`}
-        aria-controls={`panel-${cakes.id}`}
-        className='flex column'
+      {/* <Accordion
+        expanded={expanded === `panel-${cakes.id}`}
+        onChange={(_event, isExpanded) =>
+          handleChange(isExpanded, `panel-${cakes.id}`)
+        }
+      >
+        <AccordionSummary
+          expandIcon={<ExpandMore />}
+          id={`panel-${cakes.id}`}
+          aria-controls={`panel-${cakes.id}`}
+        > */}{' '}
+      <div
+        className='cursor-pointer hover:bg-gray-200 rounded-lg flex justify-center items-center mb-6'
+        onClick={handleOpenModal}
       >
         <div>
           <div
-            className='font-bold text-3xl hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'
-            onClick={handleUpdateName}
+            className='font-bold text-3xl rounded-lg p-4 hover:text-white cursor-pointer'
+            // onClick={handleUpdateName}
           >
             {cakes.id} - {cakes.name}
           </div>
-          <div className='flex justify-center'>
+          <div className='flex justify-center items-center'>
             <img
-              className='w-72 h-72 rounded-3xl object-cover border-2 border-black'
+              className='w-36 h-36 rounded-3xl object-cover border-2 border-black'
               alt={cakes.description}
               src={cakes.img}
             />
           </div>
         </div>
-      </AccordionSummary>
-
-      <AccordionDetails>
-        <div className='p-4 rounded-lg mt-14 border-blue-400 border-2 rounded-xl'>
-          <div
-            className='text-2xl hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'
-            onClick={handleUpdateDescription}
-          >
-            {cakes.description}
+      </div>
+      <Modal
+        disableAutoFocus
+        open={openModal}
+        onClose={handleCloseModal}
+        aria-labelledby='modal-modal-title'
+        aria-describedby='modal-modal-description'
+      >
+        <Box
+          sx={{ width: 600 }}
+          className='absolute top-1/2 left-1/2 -translate-y-1/2 -translate-x-1/2'
+        >
+          <div className='bg-white p-4 rounded-lg mt-14 mb-6 border-blue-400 border-2 rounded-xl text-center grid grid-cols-1'>
+            <div
+              className='font-bold text-3xl rounded-lg p-4 hover:text-white cursor-pointer'
+              // onClick={handleUpdateName}
+            >
+              {cakes.id} - {cakes.name}
+            </div>
+            <div className='flex justify-center items-center'>
+              <img
+                className='w-36 h-36 rounded-3xl object-cover border-2 border-black m-2 p-4'
+                alt={cakes.description}
+                src={cakes.img}
+              />
+            </div>
+            <div
+              className='text-2xl hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'
+              onClick={handleUpdateDescription}
+            >
+              {cakes.description}
+            </div>
+            <div className='text-2xl hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'>
+              Left cakes - {cakes.numOfCakes}
+            </div>
+            <div className='text-2xl font-bold hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'>
+              Price - {cakes.price}
+            </div>
+            <button
+              onClick={handleOrderedCake}
+              className='p-4 m-2 bg-red-600 hover:bg-red-400 text-white rounded-lg hover:shadow-inner'
+            >
+              Order
+            </button>
+            {/* <button
+              onClick={handleRemove}
+              className='p-4 m-2 bg-red-600 hover:bg-red-400 text-white rounded-lg hover:shadow-inner'
+            >
+              Delete
+            </button> */}
           </div>
-          <div className='text-2xl hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'>
-            Left cakes - {cakes.numOfCakes}
-          </div>
-          <div className='text-2xl font-bold hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'>
-            Price - {cakes.price}
-          </div>
-          <button
-            onClick={handleOrderedCake}
-            className='p-4 bg-red-600 hover:bg-red-400 text-white rounded-lg hover:shadow-inner w-full'
-          >
-            Order
-          </button>
-          {/* <button
-            onClick={handleRemove}
-            className='p-4 bg-red-600 hover:bg-red-400 text-white rounded-lg hover:shadow-inner'
-          >
-            Delete
-          </button> */}
-        </div>
-      </AccordionDetails>
+        </Box>
+      </Modal>
       <Snackbar
         anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         open={open}
         autoHideDuration={6000}
         onClose={handleClose}
       >
-        <SnackbarAlert onClose={handleClose} severity='warning'>
+        <SnackbarAlert
+          onClose={handleClose}
+          severity='warning'
+          sx={{
+            backgroundColor: 'white',
+            border: '1px solid orange',
+            borderRadius: '15px',
+          }}
+        >
           Unfortunately you cant ordered this {cakes.name}!
         </SnackbarAlert>
       </Snackbar>
@@ -184,11 +230,20 @@ export const CakesItem: FC<CakesItemProps> = ({
         autoHideDuration={6000}
         onClose={handleCloseTwo}
       >
-        <SnackbarAlert onClose={handleCloseTwo} severity='success'>
-          Ordered success! {cakes.name}!
+        <SnackbarAlert
+          onClose={handleCloseTwo}
+          severity='success'
+          sx={{
+            backgroundColor: 'white',
+            border: '1px solid blue',
+            borderRadius: '15px',
+          }}
+        >
+          Ordered success - {cakes.name}!
         </SnackbarAlert>
       </Snackbar>
-    </Accordion>
+      {/* </Accordion> */}
+    </Paper>
 
     // </div>
   );

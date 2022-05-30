@@ -62,7 +62,7 @@
   "cakes": [
     {
       "id": 1,
-      "name": "Green-red fantsy",
+      "name": "Red-green cake",
       "idCheck": 1,
       "price": 100,
       "description": "somethin cool with it",
@@ -79,7 +79,7 @@
       "description": "bla-bla-bla 2",
       "flavour": "sweety",
       "color": "white",
-      "numOfCakes": 7,
+      "numOfCakes": 3,
       "img": "http://localhost:8080/assets/photos/cake/cake3.jpg"
     },
     {
@@ -90,7 +90,7 @@
       "description": "dfdf",
       "flavour": "salty",
       "color": "yellow",
-      "numOfCakes": 21,
+      "numOfCakes": 18,
       "img": "http://localhost:8080/assets/photos/cake/cake4.jpg"
     },
     {
@@ -101,13 +101,8 @@
       "description": "bla-bla-bla 4",
       "flavour": "sweety",
       "color": "black",
-      "numOfCakes": 34,
+      "numOfCakes": 30,
       "img": "http://localhost:8080/assets/photos/cake/cake1.jpg"
-    },
-    {
-      "name": "123",
-      "description": "123",
-      "id": 5
     },
     {
       "name": "Александр",
@@ -122,7 +117,7 @@
   ],
   "basket": {
     "id": 1,
-    "numOfOrdered": 52,
-    "basketAllPrice": 5780
+    "numOfOrdered": 63,
+    "basketAllPrice": 9080
   }
 }

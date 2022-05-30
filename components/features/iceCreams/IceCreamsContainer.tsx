@@ -103,9 +103,9 @@ export const IceCreamsContainer = () => {
         </div>
       ) : iceCreams ? (
         <Stack alignItems='center'>
-          <Box sx={{ width: 800 }}>
-            <div className='grid grid-cols-2 grid-flow-row '>
-              <Accordion
+          {/* <Box sx={{ width: 800 }}> */}
+          <div className='w-fit '>
+            {/* <Accordion
                 expanded={expanded === `panel-${1}`}
                 onChange={(_event, isExpanded) =>
                   handleChange(isExpanded, `panel-${1}`)
@@ -196,27 +196,25 @@ export const IceCreamsContainer = () => {
                     </div>
                   </div>
                 </AccordionDetails>
-              </Accordion>
-              <Box sx={{ width: 600 }}>
-                <Masonry columns={1} spacing={2}>
-                  <Paper>
-                    <div className='bg-blue-200 border-2 border-blue-400 rounded-lg p-2 m-2 '>
-                      {iceCreams.map((iceCreams) => (
-                        <IceCreamsItem
-                          key={iceCreams.id}
-                          iceCreams={iceCreams}
-                          basket={basket}
-                          update={handleUpdate}
-                          remove={handleRemove}
-                          updateBasket={handleUpdateBasket}
-                        />
-                      ))}
-                    </div>
-                  </Paper>
-                </Masonry>
-              </Box>
+              </Accordion> */}
+            {/* <Box sx={{ width: 600 }}> */}
+            <div className='bg-blue-200 border-2 border-blue-400 rounded-lg'>
+              <div className='grid grid-cols-3 gap-2'>
+                {iceCreams.map((iceCreams) => (
+                  <IceCreamsItem
+                    key={iceCreams.id}
+                    iceCreams={iceCreams}
+                    basket={basket}
+                    update={handleUpdate}
+                    remove={handleRemove}
+                    updateBasket={handleUpdateBasket}
+                  />
+                ))}
+              </div>
             </div>
-          </Box>
+            {/* </Box> */}
+          </div>
+          {/* </Box> */}
         </Stack>
       ) : null}
     </div>

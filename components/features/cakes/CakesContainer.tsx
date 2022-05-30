@@ -87,8 +87,8 @@ export const CakesContainer = () => {
   //   }, 2000);
   // }, []);
   return (
-    <div className=''>
-      {isLoading && (
+    <div>
+      {isLoading ? (
         <div className='text-3xl font-bold p-4'>
           <Pending
             className=' animate-spin transition duration-300'
@@ -96,16 +96,14 @@ export const CakesContainer = () => {
           />
           Loading...
         </div>
-      )}
-      {error && (
+      ) : error ? (
         <div className='font-bold text-3xl bg-red-600 p-4 rounded-lg m-4'>
           Error 404
         </div>
-      )}
-      {!isLoading && (
+      ) : cakes ? (
         <Stack alignItems='center'>
-          <Box sx={{ width: 800 }}>
-            <div className='grid grid-cols-2 grid-flow-row '>
+          <div className='w-fit'>
+            {/* <div className='grid grid-cols-2 grid-flow-row '>
               <Accordion
                 expanded={expanded === `panel-${1}`}
                 onChange={(_event, isExpanded) =>
@@ -197,30 +195,26 @@ export const CakesContainer = () => {
                     </div>
                   </div>
                 </AccordionDetails>
-              </Accordion>
-              <Box sx={{ width: 600 }}>
-                <Masonry columns={1} spacing={2}>
-                  <Paper>
-                    <div className='bg-blue-200 border-2 border-blue-400 rounded-lg p-2 m-2 '>
-                      {cakes &&
-                        cakes.map((cakes) => (
-                          <CakesItem
-                            key={cakes.id}
-                            cakes={cakes}
-                            basket={basket}
-                            update={handleUpdate}
-                            remove={handleRemove}
-                            updateBasket={handleUpdateBasket}
-                          />
-                        ))}
-                    </div>
-                  </Paper>
-                </Masonry>
-              </Box>
+              </Accordion> */}
+            <div className='bg-blue-200 border-2 border-blue-400 rounded-lg p-2 m-2 w-fit '>
+              <div className='grid grid-cols-3  gap-2'>
+                {cakes &&
+                  cakes.map((cakes) => (
+                    <CakesItem
+                      key={cakes.id}
+                      cakes={cakes}
+                      basket={basket}
+                      update={handleUpdate}
+                      remove={handleRemove}
+                      updateBasket={handleUpdateBasket}
+                    />
+                  ))}
+              </div>
             </div>
-          </Box>
+          </div>
+          {/* </div> */}
         </Stack>
-      )}
+      ) : null}
     </div>
   );
 };
