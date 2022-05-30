@@ -16,11 +16,13 @@ import {
   useDeleteCakesMutation,
   useFetchAllCakesQuery,
   useUpdateCakesMutation,
+} from '../../app/store/base/apiMagazineService';
+import { CakesItem } from './CakesItem';
+import {
   useDeleteBasketMutation,
   useUpdateBasketMutation,
   useFetchAllBasketQuery,
-} from '../api/services/apiCakesService';
-import { CakesItem } from './CakesItem';
+} from '../../app/store/basket/BasketApi';
 
 export const CakesContainer = () => {
   const [limit, setLimit] = useState(10);

@@ -22,7 +22,7 @@
       "color": "white",
       "numOfIceCream": 200,
       "img": "http://localhost:8080/assets/photos/iceCream/ice2.jpg",
-      "numOfIceCreams": 17
+      "numOfIceCreams": 12
     },
     {
       "id": 3,
@@ -34,7 +34,7 @@
       "color": "white",
       "numOfIceCream": 300,
       "img": "http://localhost:8080/assets/photos/iceCream/ice3.jpg",
-      "numOfIceCreams": 19
+      "numOfIceCreams": 17
     },
     {
       "id": 4,
@@ -54,7 +54,7 @@
       "description": "Bla-bla-bla",
       "flavour": "Salty-sweety",
       "color": "Blue-purple",
-      "numOfIceCreams": 200,
+      "numOfIceCreams": 199,
       "img": "https://source.unsplash.com/random",
       "id": 5
     }
@@ -90,7 +90,7 @@
       "description": "dfdf",
       "flavour": "salty",
       "color": "yellow",
-      "numOfCakes": 18,
+      "numOfCakes": 16,
       "img": "http://localhost:8080/assets/photos/cake/cake4.jpg"
     },
     {
@@ -101,7 +101,7 @@
       "description": "bla-bla-bla 4",
       "flavour": "sweety",
       "color": "black",
-      "numOfCakes": 30,
+      "numOfCakes": 29,
       "img": "http://localhost:8080/assets/photos/cake/cake1.jpg"
     },
     {
@@ -117,7 +117,7 @@
   ],
   "basket": {
     "id": 1,
-    "numOfOrdered": 63,
-    "basketAllPrice": 9080
+    "numOfOrdered": 74,
+    "basketAllPrice": 10900
   }
 }

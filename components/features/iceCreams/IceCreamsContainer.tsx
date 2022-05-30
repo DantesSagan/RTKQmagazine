@@ -16,11 +16,15 @@ import {
   useUpdateIceCreamMutation,
   useDeleteIceCreamMutation,
   useCreateIceCreamMutation,
+} from '../../app/store/iceCream/IceCream';
+
+import { IceCreamsItem } from './IceCreamsItem';
+
+import {
   useDeleteBasketMutation,
   useUpdateBasketMutation,
   useFetchAllBasketQuery,
-} from '../api/services/apiCakesService';
-import { IceCreamsItem } from './IceCreamsItem';
+} from '../../app/store/basket/BasketApi';
 
 export const IceCreamsContainer = () => {
   const [limit, setLimit] = useState(10);

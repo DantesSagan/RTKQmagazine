@@ -10,7 +10,7 @@ import { Box, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Cake, Favorite, Icecream } from '@mui/icons-material';
 import { CakesContainer } from '../components/features/cakes/CakesContainer';
-import { MagazineApi } from '../components/features/api/services/apiCakesService';
+import { MagazineApi } from '../components/app/store/base/apiMagazineService';
 import { IceCreamsContainer } from '../components/features/iceCreams/IceCreamsContainer';
 
 function App() {

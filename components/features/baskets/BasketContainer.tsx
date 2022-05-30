@@ -4,24 +4,24 @@ import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
 import { Pending } from '@mui/icons-material';
 import React, { useEffect } from 'react';
 
+import { BasketItem } from './BasketItem';
+import { IBasket } from '../../models/IBasket';
 import {
   useDeleteBasketMutation,
   useFetchAllBasketQuery,
   useUpdateBasketMutation,
-} from '../api/services/apiCakesService';
-import { BasketItem } from './BasketItem';
-import { IBasket } from '../../models/IBasket';
+} from '../../app/store/basket/BasketApi';
 
 export default function BasketViewNavBar() {
   const { data: basket, error, isLoading } = useFetchAllBasketQuery(1);
   const [updateBasket, {}] = useUpdateBasketMutation();
   const [deleteBasket, {}] = useDeleteBasketMutation();
-
+  // const { data: basketOne } = useGetBasketQuery(1);
   //   const basketAll = basket.basket.map((item) => item.basketAllPrice);
   //   const orderedAll = basket.basket.map((item) => item.numOfOrdered);
   //   const numOfPrice = Number(basketAll);
   //   const numOfOrdered = Number(orderedAll);
-
+  // console.log(basketOne);
   const handleUpdateBasket = (basket: IBasket) => {
     updateBasket(basket);
   };

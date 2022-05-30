@@ -1,14 +1,14 @@
 import { configureStore, combineReducers } from '@reduxjs/toolkit';
 // import { createLogger } from 'redux-logger';
 
-import basketReducer from '../features/basket/basketSlice';
+import basketReducer from '../../features/basket/basketSlice';
 
-import cakeReducer from '../features/cake/cakeSlice';
+import cakeReducer from '../../features/cake/cakeSlice';
 
-import iceCreamReducer from '../features/icecream/iceCreamSlice';
+import iceCreamReducer from '../../features/icecream/iceCreamSlice';
 
-import userReducer from '../features/user/userSlice';
-import { MagazineApi } from '../features/api/services/apiCakesService';
+import userReducer from '../../features/user/userSlice';
+import { MagazineApi } from './base/apiMagazineService';
 
 // const logger = createLogger();
 
