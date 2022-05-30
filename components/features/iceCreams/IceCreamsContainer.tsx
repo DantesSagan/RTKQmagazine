@@ -9,33 +9,33 @@ import {
   Stack,
 } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import { ICakes } from '../../models/ICakes';
+import { ICream } from '../../models/ICreamIce';
 import { IBasket } from '../../models/IBasket';
 import {
-  useCreateCakesMutation,
-  useDeleteCakesMutation,
-  useFetchAllCakesQuery,
-  useUpdateCakesMutation,
+  useFetchAllCreamQuery,
+  useUpdateIceCreamMutation,
+  useDeleteIceCreamMutation,
+  useCreateIceCreamMutation,
   useDeleteBasketMutation,
   useUpdateBasketMutation,
   useFetchAllBasketQuery,
 } from '../api/services/apiCakesService';
-import { CakesItem } from './CakesItem';
+import { IceCreamsItem } from './IceCreamsItem';
 
-export const CakesContainer = () => {
+export const IceCreamsContainer = () => {
   const [limit, setLimit] = useState(10);
   const {
-    data: cakes,
+    data: iceCreams,
     error,
     isLoading,
-  } = useFetchAllCakesQuery(limit, {
+  } = useFetchAllCreamQuery(limit, {
     //   How frequently to automatically re-fetch data (in milliseconds). Defaults to 0 (off).
     // pollingInterval: 1000,
   });
 
-  const [updateCakes, {}] = useUpdateCakesMutation();
-  const [deleteCakes, {}] = useDeleteCakesMutation();
-  const [createCakes, {}] = useCreateCakesMutation();
+  const [updateiceCreams, {}] = useUpdateIceCreamMutation();
+  const [deleteiceCreams, {}] = useDeleteIceCreamMutation();
+  const [createiceCreams, {}] = useCreateIceCreamMutation();
 
   const {
     data: basket,
@@ -55,27 +55,27 @@ export const CakesContainer = () => {
   const [description, setDescription] = useState<string>(null);
   const [flavour, setFlavour] = useState<string>(null);
   const [color, setColor] = useState<string>(null);
-  const [numOfCakes, setNumOfCakes] = useState<number>(null);
+  const [numOfIceCreams, setNumOficeCreams] = useState<number>(null);
   const [img, setImg] = useState<string>(null);
 
   const handleCreate = async () => {
     // const name = prompt();
 
-    await createCakes({
+    await createiceCreams({
       name,
       price,
       description,
       flavour,
       color,
-      numOfCakes,
+      numOfIceCreams,
       img,
-    } as ICakes);
+    } as ICream);
   };
-  const handleUpdate = (cakes: ICakes) => {
-    updateCakes(cakes);
+  const handleUpdate = (iceCreams: ICream) => {
+    updateiceCreams(iceCreams);
   };
-  const handleRemove = (cakes: ICakes) => {
-    deleteCakes(cakes);
+  const handleRemove = (iceCreams: ICream) => {
+    deleteiceCreams(iceCreams);
   };
   const handleChange = (isExpanded: boolean, panel: string) => {
     setExpanded(isExpanded ? panel : false);
@@ -86,9 +86,14 @@ export const CakesContainer = () => {
   //     setLimit(5);
   //   }, 2000);
   // }, []);
+
   return (
     <div className=''>
-      {isLoading && (
+      {error ? (
+        <div className='font-bold text-3xl bg-red-600 p-4 rounded-lg m-4'>
+          Error 404
+        </div>
+      ) : isLoading ? (
         <div className='text-3xl font-bold p-4'>
           <Pending
             className=' animate-spin transition duration-300'
@@ -96,13 +101,7 @@ export const CakesContainer = () => {
           />
           Loading...
         </div>
-      )}
-      {error && (
-        <div className='font-bold text-3xl bg-red-600 p-4 rounded-lg m-4'>
-          Error 404
-        </div>
-      )}
-      {!isLoading && (
+      ) : iceCreams ? (
         <Stack alignItems='center'>
           <Box sx={{ width: 800 }}>
             <div className='grid grid-cols-2 grid-flow-row '>
@@ -177,12 +176,12 @@ export const CakesContainer = () => {
                     </div>
                     <div className='grid grid-cols-1 grid-rows-2'>
                       {' '}
-                      <label htmlFor='numOfCakes'>NumOfCakes</label>
+                      <label htmlFor='numOficeCreams'>NumOficeCreams</label>
                       <input
-                        id='numOfCakes'
+                        id='numOficeCreams'
                         className='p-2 border-2 border-blue-400 text-xl rounded-sm'
                         onChange={(e) =>
-                          setNumOfCakes(parseInt(e.target.value))
+                          setNumOficeCreams(parseInt(e.target.value))
                         }
                       />
                     </div>
@@ -202,17 +201,16 @@ export const CakesContainer = () => {
                 <Masonry columns={1} spacing={2}>
                   <Paper>
                     <div className='bg-blue-200 border-2 border-blue-400 rounded-lg p-2 m-2 '>
-                      {cakes &&
-                        cakes.map((cakes) => (
-                          <CakesItem
-                            key={cakes.id}
-                            cakes={cakes}
-                            basket={basket}
-                            update={handleUpdate}
-                            remove={handleRemove}
-                            updateBasket={handleUpdateBasket}
-                          />
-                        ))}
+                      {iceCreams.map((iceCreams) => (
+                        <IceCreamsItem
+                          key={iceCreams.id}
+                          iceCreams={iceCreams}
+                          basket={basket}
+                          update={handleUpdate}
+                          remove={handleRemove}
+                          updateBasket={handleUpdateBasket}
+                        />
+                      ))}
                     </div>
                   </Paper>
                 </Masonry>
@@ -220,7 +218,7 @@ export const CakesContainer = () => {
             </div>
           </Box>
         </Stack>
-      )}
+      ) : null}
     </div>
   );
 };

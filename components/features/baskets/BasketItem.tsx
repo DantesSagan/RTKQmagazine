@@ -25,9 +25,9 @@ export const BasketItem: FC<BasketItemProps> = ({
       </div>
       <div className='float-right p-2 dropdown hover:bg-gray-700 rounded-lg transition duration-300 cursor-pointer mr-6'>
         {basket.basketAllPrice > 0 && basket.numOfOrdered > 0 ? (
-          <span className='flex h-3 w-3 relative float-right'>
+          <span className='flex h-4 w-4 relative float-right '>
             <span className='animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-400 opacity-75'></span>
-            <span className='relative inline-flex rounded-full h-3 w-3 bg-sky-500'></span>
+            <span className='relative inline-flex rounded-full h-4 w-4 bg-sky-500'></span>
           </span>
         ) : null}
         Magazine

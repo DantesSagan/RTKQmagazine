@@ -8,7 +8,7 @@ import cakeReducer from '../features/cake/cakeSlice';
 import iceCreamReducer from '../features/icecream/iceCreamSlice';
 
 import userReducer from '../features/user/userSlice';
-import { CakesApi } from '../features/api/services/apiCakesService';
+import { MagazineApi } from '../features/api/services/apiCakesService';
 
 // const logger = createLogger();
 
@@ -17,12 +17,12 @@ const rootReducers = combineReducers({
   iceCream: iceCreamReducer,
   user: userReducer,
   basket: basketReducer,
-  [CakesApi.reducerPath]: CakesApi.reducer,
+  [MagazineApi.reducerPath]: MagazineApi.reducer,
 });
 
 const store = configureStore({
   reducer: rootReducers,
-  middleware: (getMiddleware) => getMiddleware().concat(CakesApi.middleware),
+  middleware: (getMiddleware) => getMiddleware().concat(MagazineApi.middleware),
   // middleware: [thunkMiddleware],
 });
 export default store;

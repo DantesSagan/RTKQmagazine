@@ -1,9 +1,9 @@
 // import React from 'react';
-// import { CakesApi } from '../services/CakesService';
+// import { MagazineApi } from '../services/CakesService';
 // import { CakesItem } from './CakesItem';
 
 // export const CakesContainer2 = () => {
-//   const { data: cakes, error, isLoading } = CakesApi.useFetchAllCakesQuery(5);
+//   const { data: cakes, error, isLoading } = MagazineApi.useFetchAllCakesQuery(5);
 
 //   return (
 //     <div>
@@ -15,3 +15,4 @@
 //     </div>
 //   );
 // };
+export {};

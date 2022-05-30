@@ -1,17 +1,17 @@
 import { useState } from 'react';
 
-import CakeView from '../components/features/cake/CakeView';
-import IceCreamView from '../components/features/icecream/IceCreamView';
-import UserView from '../components/features/user/UserView';
+// import CakeView from '../components/features/cake/CakeView';
+// import IceCreamView from '../components/features/icecream/IceCreamView';
+// import UserView from '../components/features/user/UserView';
+// import { CakesItem } from '../components/features/cakes/CakesItem';
+// import { ICakes } from '../components/models/ICakes';
 import BasketViewNavBar from '../components/features/baskets/BasketContainer';
 import { Box, Tab, Typography } from '@mui/material';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Cake, Favorite, Icecream } from '@mui/icons-material';
-import { CakesItem } from '../components/features/cakes/CakesItem';
 import { CakesContainer } from '../components/features/cakes/CakesContainer';
-import { CakesContainer2 } from '../components/features/cakes/CakesContainer2';
-import { CakesApi } from '../components/features/api/services/apiCakesService';
-import { ICakes } from '../components/models/ICakes';
+import { MagazineApi } from '../components/features/api/services/apiCakesService';
+import { IceCreamsContainer } from '../components/features/iceCreams/IceCreamsContainer';
 
 function App() {
   const [count, setCount] = useState(0);
@@ -76,7 +76,8 @@ function App() {
             >
               Delicious ice creams!
             </Typography>
-            <IceCreamView value={undefined} expanded={false} />
+            <IceCreamsContainer />
+            {/* <IceCreamView value={undefined} expanded={false} /> */}
           </TabPanel>
         </TabContext>
       </Box>

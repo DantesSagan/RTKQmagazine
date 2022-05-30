@@ -4,7 +4,7 @@
 //   createSelector,
 // } from '@reduxjs/toolkit';
 
-// import { CakesApi } from '../api/services/apiCakesService';
+// import { MagazineApi } from '../api/services/apiCakesService';
 
 // // Calling `someEndpoint.select(someArg)` generates a new selector that will return
 // // the query result object for a query with those parameters.
@@ -15,7 +15,7 @@
 // const basketAdapter = createEntityAdapter();
 // const initialState = basketAdapter.getInitialState();
 
-// export const extendedBasketSlice = CakesApi.injectEndpoints({
+// export const extendedBasketSlice = MagazineApi.injectEndpoints({
 //   endpoints: (build) => ({
 //     getbasket: build.query({
 //       query: () => `/basket`,

@@ -17,12 +17,11 @@ function MyApp({ Component, pageProps }: AppProps) {
   // }
 
   // store.dispatch(extendedCakeSlice.endpoints.getCake.initiate());
-
-  return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
-  );
+    return (
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    );
 }
 
 export default MyApp;

@@ -9,16 +9,14 @@ import {
   Snackbar,
 } from '@mui/material';
 import React, { FC, forwardRef, useState } from 'react';
-import { useAppDispatch } from '../../app/hooks';
 import { IBasket } from '../../models/IBasket';
-import { ICakes } from '../../models/ICakes';
-import { orderedCake } from '../cake/cakeSlice';
+import { ICream } from '../../models/ICreamIce';
 
-interface CakesItemProps {
-  cakes: ICakes;
+interface IceCreamsItemProps {
+  iceCreams: ICream;
   basket: IBasket;
-  remove: (cakes: ICakes) => void;
-  update: (cakes: ICakes) => void;
+  remove: (IceCreams: ICream) => void;
+  update: (IceCreams: ICream) => void;
   updateBasket: (basket: IBasket) => void;
 }
 
@@ -28,8 +26,8 @@ const SnackbarAlert = forwardRef<HTMLDivElement, AlertProps>(
   }
 );
 
-export const CakesItem: FC<CakesItemProps> = ({
-  cakes,
+export const IceCreamsItem: FC<IceCreamsItemProps> = ({
+  iceCreams,
   basket,
   remove,
   update,
@@ -67,7 +65,7 @@ export const CakesItem: FC<CakesItemProps> = ({
     // prevent bubbling всплытие
     // Предотвращение дальнейшую передачу текущего события
     event.stopPropagation();
-    remove(cakes);
+    remove(iceCreams);
   };
 
   const handleUpdateName = (event: React.MouseEvent) => {
@@ -75,7 +73,7 @@ export const CakesItem: FC<CakesItemProps> = ({
     // Предотвращение дальнейшую передачу текущего события
     event.stopPropagation();
     const name = prompt();
-    update({ ...cakes, name });
+    update({ ...iceCreams, name });
   };
 
   const handleUpdateDescription = (event: React.MouseEvent) => {
@@ -83,24 +81,26 @@ export const CakesItem: FC<CakesItemProps> = ({
     // Предотвращение дальнейшую передачу текущего события
     event.stopPropagation();
     const description = prompt();
-    update({ ...cakes, description });
+    update({ ...iceCreams, description });
   };
 
   const handleOrderedCake = (event: React.MouseEvent) => {
     // prevent bubbling всплытие
     // Предотвращение дальнейшую передачу текущего события
-    const numOfCakes = cakes.numOfCakes - 1;
+    event.stopPropagation();
+    const numOfIceCreams = iceCreams.numOfIceCreams - 1;
+
     const numOfOrdered = basket.numOfOrdered + 1;
-    let price = cakes.price;
+    let price = iceCreams.price;
     const basketAllPrice = basket.basketAllPrice + price;
 
-    if (cakes.numOfCakes <= 0) {
+    if (iceCreams.numOfIceCreams <= 0) {
       setOpen(true);
       return 0;
     } else {
       setOpenTwo(true);
       updateBasket({ ...basket, numOfOrdered, basketAllPrice });
-      update({ ...cakes, numOfCakes });
+      update({ ...iceCreams, numOfIceCreams });
     }
   };
 
@@ -112,15 +112,15 @@ export const CakesItem: FC<CakesItemProps> = ({
     // <div className='grid grid-cols-3 gap-2'>
     <Accordion
       sx={{ minHeight: heights }}
-      expanded={expanded === `panel-${cakes.id}`}
+      expanded={expanded === `panel-${iceCreams.id}`}
       onChange={(_event, isExpanded) =>
-        handleChange(isExpanded, `panel-${cakes.id}`)
+        handleChange(isExpanded, `panel-${iceCreams.id}`)
       }
     >
       <AccordionSummary
         expandIcon={<ExpandMore />}
-        id={`panel-${cakes.id}`}
-        aria-controls={`panel-${cakes.id}`}
+        id={`panel-${iceCreams.id}`}
+        aria-controls={`panel-${iceCreams.id}`}
         className='flex column'
       >
         <div>
@@ -128,13 +128,13 @@ export const CakesItem: FC<CakesItemProps> = ({
             className='font-bold text-3xl hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'
             onClick={handleUpdateName}
           >
-            {cakes.id} - {cakes.name}
+            {iceCreams.id} - {iceCreams.name}
           </div>
           <div className='flex justify-center'>
             <img
-              className='w-72 h-72 rounded-3xl object-cover border-2 border-black'
-              alt={cakes.description}
-              src={cakes.img}
+              className='w-72 h-72 rounded-2xl object-cover border-2 border-black'
+              alt={iceCreams.description}
+              src={iceCreams.img}
             />
           </div>
         </div>
@@ -146,13 +146,13 @@ export const CakesItem: FC<CakesItemProps> = ({
             className='text-2xl hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'
             onClick={handleUpdateDescription}
           >
-            {cakes.description}
+            {iceCreams.description}
           </div>
           <div className='text-2xl hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'>
-            Left cakes - {cakes.numOfCakes}
+            Left IceCreams - {iceCreams.numOfIceCreams}
           </div>
           <div className='text-2xl font-bold hover:bg-blue-500 rounded-lg p-4 hover:text-white cursor-pointer'>
-            Price - {cakes.price}
+            Price - {iceCreams.price}
           </div>
           <button
             onClick={handleOrderedCake}
@@ -175,7 +175,7 @@ export const CakesItem: FC<CakesItemProps> = ({
         onClose={handleClose}
       >
         <SnackbarAlert onClose={handleClose} severity='warning'>
-          Unfortunately you cant ordered this {cakes.name}!
+          Unfortunately you cant ordered this {iceCreams.name}!
         </SnackbarAlert>
       </Snackbar>
       <Snackbar
@@ -185,7 +185,7 @@ export const CakesItem: FC<CakesItemProps> = ({
         onClose={handleCloseTwo}
       >
         <SnackbarAlert onClose={handleCloseTwo} severity='success'>
-          Ordered success! {cakes.name}!
+          Ordered success! {iceCreams.name}!
         </SnackbarAlert>
       </Snackbar>
     </Accordion>
