@@ -9,7 +9,7 @@ import { HYDRATE } from 'next-redux-wrapper';
 // https://dantessagan-rtkqmagazine-69rj9v57wfxq6r.github.dev/
 export const MagazineApi = createApi({
   reducerPath: 'MagazineApi',
-  // Проставим тэги, то есть тэг Cakes
+  // Проставим тэги, то есть тэг Magazine
   tagTypes: ['Magazine'],
   baseQuery: fetchBaseQuery({
     baseUrl: 'http://localhost:4001/',
