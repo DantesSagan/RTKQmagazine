@@ -1,61 +1,78 @@
-import {
-  createSlice,
-  createEntityAdapter,
-  createSelector,
-} from '@reduxjs/toolkit';
-import { IBasket } from '../../../models/IBasket';
+// import {
+//   createSlice,
+//   createEntityAdapter,
+//   createSelector,
+// } from '@reduxjs/toolkit';
+import { IUsers } from '../../../models/IUsers';
 import { MagazineApi } from '../base/apiMagazineService';
 
-const basketAdapter = createEntityAdapter();
-const initialState = basketAdapter.getInitialState();
+// const basketAdapter = createEntityAdapter();
+// const initialState = basketAdapter.getInitialState();
 
-export const extendedBasketSlice = MagazineApi.injectEndpoints({
+export const extendedUsersSlice = MagazineApi.injectEndpoints({
   endpoints: (build) => ({
-    fetchAllBasket: build.query<IBasket, void>({
-      query: () => `/basket`,
-      // Укажем ednpoints, что он работает с эти тэгом basket
+    // ICE CREAM
+    fetchAllUsers: build.query<IUsers[], number>({
+      query: (limit: number = 5) => ({
+        url: `/users`,
+        params: {
+          _limit: limit,
+        },
+      }),
+      // Укажем ednpoints, что он работает с эти тэгом Cakes
       // И может быть несколько endpoints, что работают с разными данными
       // И их необходимо правильно сопоставить
       providesTags: (result) => ['Magazine'],
     }),
-    // getCake: build.query<IBasket[], IBasket>({
-    //   query: () => '/basket',
+    // getCake: build.query<IUsers[], IUsers>({
+    //   query: () => '/cakes',
     // }),
-    updateBasket: build.mutation<IBasket, IBasket>({
+    createUser: build.mutation<IUsers, IUsers>({
+      query: (post) => ({
+        url: '/users',
+        method: 'POST',
+        body: post,
+      }),
+      // Этот endpoint обеспечивает доставку данных
+      // А при создании поста(Cakes) становятся не актуальными
+      invalidatesTags: ['Magazine'],
+    }),
+    updateUser: build.mutation<IUsers, IUsers>({
       query: (put) => ({
-        url: `/basket`,
+        url: `/users/${put.id}`,
         method: 'PUT',
         body: put,
       }),
       // Этот endpoint обеспечивает доставку данных
-      // А при создании поста(basket) становятся не актуальными
+      // А при создании поста(Cakes) становятся не актуальными
       invalidatesTags: ['Magazine'],
     }),
-    deleteBasket: build.mutation<IBasket, IBasket>({
+    deleteUser: build.mutation<IUsers, IUsers>({
       query: (del) => ({
-        url: `/basket/${del.id}`,
+        url: `/users/${del.id}`,
         method: 'DELETE',
         body: del,
       }),
       // Этот endpoint обеспечивает доставку данных
-      // А при создании поста(basket) становятся не актуальными
+      // А при создании поста(Cakes) становятся не актуальными
       invalidatesTags: ['Magazine'],
     }),
   }),
 });
 
 export const {
-  useFetchAllBasketQuery,
-  useUpdateBasketMutation,
-  useDeleteBasketMutation,
-} = extendedBasketSlice;
+  useFetchAllUsersQuery,
+  useUpdateUserMutation,
+  useDeleteUserMutation,
+  useCreateUserMutation,
+} = extendedUsersSlice;
 
 // // Calling `someEndpoint.select(someArg)` generates a new selector that will return
 // // the query result object for a query with those parameters.
 // // To generate a selector for a specific query argument, call `select(theQueryArg)`.
 // // In this case, the users query has no params, so we don't pass anything to select()
 // export const selectBasketResult =
-//   extendedBasketSlice.endpoints.getBasket.select(1);
+//   extendedUsersSlice.endpoints.getBasket.select(1);
 
 // export const selectBasketData = createSelector(
 //   selectBasketResult,

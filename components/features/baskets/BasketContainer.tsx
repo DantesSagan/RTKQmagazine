@@ -13,7 +13,7 @@ import {
 } from '../../app/store/basket/BasketApi';
 
 export default function BasketViewNavBar() {
-  const { data: basket, error, isLoading } = useFetchAllBasketQuery(1);
+  const { data: basket, error, isLoading } = useFetchAllBasketQuery();
   const [updateBasket, {}] = useUpdateBasketMutation();
   const [deleteBasket, {}] = useDeleteBasketMutation();
   // const { data: basketOne } = useGetBasketQuery(1);

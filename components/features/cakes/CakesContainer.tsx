@@ -43,7 +43,7 @@ export const CakesContainer = () => {
     data: basket,
     error: errorBasket,
     isLoading: isLoadingBasket,
-  } = useFetchAllBasketQuery(1);
+  } = useFetchAllBasketQuery();
   const [updateBasket, {}] = useUpdateBasketMutation();
   const [deleteBasket, {}] = useDeleteBasketMutation();
 

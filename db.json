@@ -1,4 +1,59 @@
 {
+  "messages": [
+    {
+      "id": 1,
+      "fromId": 1,
+      "sendId": 3,
+      "message": "Third message",
+      "timestamp": "16312576",
+      "username": "Alex"
+    },
+    {
+      "id": 2,
+      "fromId": 2,
+      "sendId": 3,
+      "message": "Third message",
+      "timestamp": "16312576",
+      "username": "Bobby"
+    },
+    {
+      "id": 3,
+      "fromId": 3,
+      "sendId": 1,
+      "message": "First message",
+      "timestamp": "16312576",
+      "username": "Zuhra"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "authorId": 1,
+      "bio": {
+        "first_name": "FN",
+        "second_name": "SN",
+        "username": "Alex"
+      }
+    },
+    {
+      "id": 2,
+      "authorId": 2,
+      "bio": {
+        "first_name": "FN",
+        "second_name": "SN",
+        "username": "Bobby"
+      }
+    },
+    {
+      "id": 3,
+      "authorId": 3,
+      "bio": {
+        "first_name": "FN",
+        "second_name": "SN",
+        "username": "Zuhra"
+      }
+    }
+  ],
   "iceCream": [
     {
       "id": 1,
