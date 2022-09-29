@@ -9,7 +9,9 @@ import {
 import { MessagesItem } from './messages/MessagesItem';
 import { useFetchAllUsersQuery } from '../../app/store/messanger/Users';
 import { IUsers } from '../../models/IUsers';
+
 export const MessangerItemBox = () => {
+  
   const { data: messages, error, isLoading } = useFetchAllMessagesQuery(5);
   const {
     data: users,

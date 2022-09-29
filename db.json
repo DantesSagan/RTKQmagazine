@@ -134,7 +134,7 @@
       "description": "bla-bla-bla 2",
       "flavour": "sweety",
       "color": "white",
-      "numOfCakes": 3,
+      "numOfCakes": 2,
       "img": "http://localhost:8080/assets/photos/cake/cake3.jpg"
     },
     {
@@ -172,7 +172,7 @@
   ],
   "basket": {
     "id": 1,
-    "numOfOrdered": 74,
-    "basketAllPrice": 10900
+    "numOfOrdered": 0,
+    "basketAllPrice": 0
   }
 }
