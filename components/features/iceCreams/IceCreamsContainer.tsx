@@ -40,12 +40,13 @@ export const IceCreamsContainer = () => {
   const [updateiceCreams, {}] = useUpdateIceCreamMutation();
   const [deleteiceCreams, {}] = useDeleteIceCreamMutation();
   const [createiceCreams, {}] = useCreateIceCreamMutation();
+  
 
   const {
     data: basket,
     error: errorBasket,
     isLoading: isLoadingBasket,
-  } = useFetchAllBasketQuery(1);
+  } = useFetchAllBasketQuery();
   const [updateBasket, {}] = useUpdateBasketMutation();
   const [deleteBasket, {}] = useDeleteBasketMutation();
 
